@@ -33,6 +33,15 @@ final class IterablesTest extends TestCase
     /**
      * @test
      */
+    public function itReturnsIfIterableIsNotEmpty(): void
+    {
+        $this->assertFalse(Iterables::isNotEmpty([]));
+        $this->assertTrue(Iterables::isNotEmpty(['foo']));
+    }
+
+    /**
+     * @test
+     */
     public function itMapsIterableWithKeysViaGivenCallable(): void
     {
         $mapped = Iterables::mapWithKeys(

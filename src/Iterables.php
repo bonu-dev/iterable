@@ -70,4 +70,14 @@ class Iterables
 
         return true;
     }
+
+    /**
+     * @param iterable<array-key, mixed> $iterable
+     *
+     * @return bool
+     */
+    public static function isNotEmpty(iterable $iterable): bool
+    {
+        return ! self::isEmpty($iterable);
+    }
 }
