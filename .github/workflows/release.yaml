@@ -5,8 +5,11 @@ on:
     tags:
       - "v*.*.*"
 
+permissions:
+  contents: write
+
 jobs:
-  phpstan:
+  release:
     runs-on: ubuntu-latest
     steps:
       - name: Create GitHub Release
