@@ -18,7 +18,7 @@ final class IterablesTest extends TestCase
             static fn (string $value): string => \strtoupper($value),
         );
 
-        $this->assertSame(['FOO', 'BAR'], \iterator_to_array($mapped));;
+        $this->assertSame(['FOO', 'BAR'], \iterator_to_array($mapped));
     }
 
     /**
@@ -28,5 +28,31 @@ final class IterablesTest extends TestCase
     {
         $this->assertTrue(Iterables::isEmpty([]));
         $this->assertFalse(Iterables::isEmpty(['foo']));
+    }
+
+    /**
+     * @test
+     */
+    public function itMapsIterableWithKeysViaGivenCallable(): void
+    {
+        $mapped = Iterables::mapWithKeys(
+            ['foo', 'bar'],
+            static fn (string $value): array => [
+                \strtoupper($value) => $value,
+            ],
+        );
+
+        $this->assertSame(['FOO' => 'foo', 'BAR' => 'bar'], \iterator_to_array($mapped));
+    }
+
+    /**
+     * @test
+     */
+    public function itReturnsFirstValueInIterable(): void
+    {
+        $this->assertSame(
+            'foo',
+            Iterables::first(['foo', 'bar']),
+        );
     }
 }
