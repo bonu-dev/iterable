@@ -64,4 +64,25 @@ final class IterablesTest extends TestCase
             Iterables::first(['foo', 'bar']),
         );
     }
+
+    /**
+     * @test
+     */
+    public function itReturnsNullIfIterableIsEmptyWhileGettingFirstValue(): void
+    {
+        $this->assertNull(Iterables::first([]));
+    }
+
+    /**
+     * @test
+     */
+    public function itReturnsKeys(): void
+    {
+        $keys = Iterables::keys([
+            'foo' => 'bar',
+            'bar' => 'baz',
+        ]);
+
+        $this->assertSame(['foo', 'bar'], \iterator_to_array($keys));
+    }
 }
