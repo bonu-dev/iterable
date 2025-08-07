@@ -41,6 +41,9 @@ Iterables::isEmpty(['foo', 'bar']);
 
 // true
 Iterables::isNotEmpty(['foo', 'bar']);
+
+// ['foo', 'bar']
+Iterables::keys(['foo' => 'bar', 'bar' => 'baz']);
 ```
 
 ## License
