@@ -64,7 +64,7 @@ class Iterables
      */
     public static function isEmpty(iterable $iterable): bool
     {
-        foreach ($iterable as $value) {
+        foreach ($iterable as $_) {
             return false;
         }
 
@@ -79,5 +79,19 @@ class Iterables
     public static function isNotEmpty(iterable $iterable): bool
     {
         return ! self::isEmpty($iterable);
+    }
+
+    /**
+     * @template TKey of array-key
+     *
+     * @param iterable<TKey, mixed> $iterable
+     *
+     * @return iterable<array-key, TKey>
+     */
+    public static function keys(iterable $iterable): iterable
+    {
+        foreach ($iterable as $key => $_) {
+            yield $key;
+        }
     }
 }
