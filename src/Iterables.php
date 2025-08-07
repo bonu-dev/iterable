@@ -14,9 +14,9 @@ class Iterables
      * @param iterable<TKey, TInitialValue> $iterable
      * @param callable(TInitialValue, TKey): TMappedValue  $callback
      *
-     * @return iterable<TKey, TMappedValue>
+     * @return \Generator<TKey, TMappedValue>
      */
-    public static function map(iterable $iterable, callable $callback): iterable
+    public static function map(iterable $iterable, callable $callback): \Generator
     {
         foreach ($iterable as $key => $value) {
             yield $key => $callback($value, $key);
@@ -32,9 +32,9 @@ class Iterables
      * @param iterable<TKey, TInitialValue> $iterable
      * @param callable(TInitialValue, TKey): array<TMappedKey, TMappedValue>  $callback
      *
-     * @return iterable<TMappedKey, TMappedValue>
+     * @return \Generator<TMappedKey, TMappedValue>
      */
-    public static function mapWithKeys(iterable $iterable, callable $callback): iterable
+    public static function mapWithKeys(iterable $iterable, callable $callback): \Generator
     {
         foreach ($iterable as $key => $value) {
             yield from $callback($value, $key);
@@ -86,9 +86,9 @@ class Iterables
      *
      * @param iterable<TKey, mixed> $iterable
      *
-     * @return iterable<array-key, TKey>
+     * @return \Generator<array-key, TKey>
      */
-    public static function keys(iterable $iterable): iterable
+    public static function keys(iterable $iterable): \Generator
     {
         foreach ($iterable as $key => $_) {
             yield $key;
