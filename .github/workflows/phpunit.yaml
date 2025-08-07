@@ -27,6 +27,8 @@ jobs:
             composer-${{ matrix.php-version }}-
       - run: composer install --prefer-dist --no-interaction --no-progress
       - run: vendor/bin/phpunit --coverage-clover build/logs/clover.xml
-      - run: vendor/bin/php-coveralls --verbose
+      - uses: coverallsapp/github-action@v2
+        with:
+          github-token: ${{ github.token }}
         env:
           COVERALLS_REPO_TOKEN: ${{ secrets.CI_COVERALLS_TOKEN }}
