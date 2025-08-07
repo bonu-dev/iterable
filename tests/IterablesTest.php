@@ -68,6 +68,14 @@ final class IterablesTest extends TestCase
     /**
      * @test
      */
+    public function itReturnsNullIfIterableIsEmptyWhileGettingFirstValue(): void
+    {
+        $this->assertNull(Iterables::first([]));
+    }
+
+    /**
+     * @test
+     */
     public function itReturnsKeys(): void
     {
         $keys = Iterables::keys([
