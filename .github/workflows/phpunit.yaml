@@ -30,5 +30,17 @@ jobs:
       - uses: coverallsapp/github-action@v2
         with:
           github-token: ${{ github.token }}
+          parallel: true
+          flag-name: phpunit-${{ join(matrix.*, '-') }}
         env:
           COVERALLS_REPO_TOKEN: ${{ secrets.CI_COVERALLS_TOKEN }}
+
+  finish:
+    needs: phpunit
+    if: ${{ always() }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: coverallsapp/github-action@v2
+        with:
+          parallel-finished: true
+          carryforward: "phpunit-8.1,phpunit-8.2,phpunit-8.3,phpunit-8.4"
