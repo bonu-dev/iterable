@@ -2,7 +2,7 @@
 
 [![PHPUnit](https://github.com/bonu-dev/iterable/actions/workflows/phpunit.yaml/badge.svg)](https://github.com/bonu-dev/iterable/actions/workflows/phpunit.yaml)
 
-Handle utility methods that simplify iterable operations.
+Handy utility methods that simplify iterable operations.
 
 ## Requirements
 
