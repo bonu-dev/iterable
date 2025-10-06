@@ -1,0 +1,141 @@
+<?php
+
+declare(strict_types=1);
+
+namespace Bonu\Iterable\Tests;
+
+use Bonu\Iterable\Iterables;
+
+final class IsNotEmptyTest extends TestCase
+{
+    /**
+     * @test
+     */
+    public function itReturnsIfIterableIsNotEmpty(): void
+    {
+        $this->assertFalse(Iterables::isNotEmpty([]));
+        $this->assertTrue(Iterables::isNotEmpty(['foo']));
+    }
+
+    /**
+     * @test
+     */
+    public function itReturnsFalseForEmptyArrayWithMixedKeys(): void
+    {
+        $this->assertFalse(Iterables::isNotEmpty([]));
+        $this->assertFalse(Iterables::isNotEmpty(array()));
+    }
+
+    /**
+     * @test
+     */
+    public function itReturnsTrueForArrayWithNullValue(): void
+    {
+        $this->assertTrue(Iterables::isNotEmpty([null]));
+        $this->assertTrue(Iterables::isNotEmpty([0 => null]));
+    }
+
+    /**
+     * @test
+     */
+    public function itReturnsTrueForArrayWithFalsyValues(): void
+    {
+        $this->assertTrue(Iterables::isNotEmpty([0]));
+        $this->assertTrue(Iterables::isNotEmpty([false]));
+        $this->assertTrue(Iterables::isNotEmpty(['']));
+        $this->assertTrue(Iterables::isNotEmpty([0.0]));
+    }
+
+    /**
+     * @test
+     */
+    public function itReturnsTrueForArrayWithStringKeys(): void
+    {
+        $this->assertTrue(Iterables::isNotEmpty(['key' => 'value']));
+        $this->assertTrue(Iterables::isNotEmpty(['' => 'empty key']));
+    }
+
+    /**
+     * @test
+     */
+    public function itReturnsTrueForArrayWithNumericKeys(): void
+    {
+        $this->assertTrue(Iterables::isNotEmpty([100 => 'value']));
+        $this->assertTrue(Iterables::isNotEmpty([-1 => 'negative key']));
+    }
+
+    /**
+     * @test
+     */
+    public function itHandlesEmptyGenerator(): void
+    {
+        $emptyGenerator = function (): \Generator {
+            return;
+            yield; // Never reached
+        };
+
+        $this->assertFalse(Iterables::isNotEmpty($emptyGenerator()));
+    }
+
+    /**
+     * @test
+     */
+    public function itHandlesNonEmptyGenerator(): void
+    {
+        $generator = function (): \Generator {
+            yield 'value';
+        };
+
+        $this->assertTrue(Iterables::isNotEmpty($generator()));
+    }
+
+    /**
+     * @test
+     */
+    public function itHandlesEmptyArrayObject(): void
+    {
+        $emptyArrayObject = new \ArrayObject([]);
+        $this->assertFalse(Iterables::isNotEmpty($emptyArrayObject));
+    }
+
+    /**
+     * @test
+     */
+    public function itHandlesNonEmptyArrayObject(): void
+    {
+        $arrayObject = new \ArrayObject(['value']);
+        $this->assertTrue(Iterables::isNotEmpty($arrayObject));
+    }
+
+    /**
+     * @test
+     */
+    public function itHandlesArrayIterator(): void
+    {
+        $emptyIterator = new \ArrayIterator([]);
+        $nonEmptyIterator = new \ArrayIterator(['value']);
+
+        $this->assertFalse(Iterables::isNotEmpty($emptyIterator));
+        $this->assertTrue(Iterables::isNotEmpty($nonEmptyIterator));
+    }
+
+    /**
+     * @test
+     */
+    public function itHandlesSingleElementIterables(): void
+    {
+        $this->assertTrue(Iterables::isNotEmpty([1]));
+        $this->assertTrue(Iterables::isNotEmpty(['single']));
+        $this->assertTrue(Iterables::isNotEmpty(['key' => 'single']));
+    }
+
+    /**
+     * @test
+     */
+    public function itHandlesMultipleElementIterables(): void
+    {
+        $this->assertTrue(Iterables::isNotEmpty([1, 2, 3]));
+        $this->assertTrue(Iterables::isNotEmpty(['a' => 1, 'b' => 2]));
+        $this->assertTrue(Iterables::isNotEmpty([null, false, 0, '']));
+    }
+}

@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace Bonu\Iterable;
 
@@ -92,6 +92,24 @@ class Iterables
     {
         foreach ($iterable as $key => $_) {
             yield $key;
+        }
+    }
+
+    /**
+     * @template TKey of array-key
+     * @template TValue
+     *
+     * @param iterable<TKey, TValue> $iterable
+     * @param (callable(TValue, TKey): bool) $callback Callback must return the boolean true to include an item. Truthy non-bool values (e.g. 1, "yes") are excluded.
+     *
+     * @return \Generator<TKey, TValue>
+     */
+    public static function filter(iterable $iterable, callable $callback): \Generator
+    {
+        foreach ($iterable as $key => $value) {
+            if ($callback($value, $key) === true) {
+                yield $key => $value;
+            }
         }
     }
 }
