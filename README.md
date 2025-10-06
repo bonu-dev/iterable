@@ -6,7 +6,7 @@ Handy utility methods that simplify iterable operations.
 
 ## Requirements
 
-- Minimum version of PHP 8.1
+- Minimum version of PHP 8.2
 
 ## Installation
 

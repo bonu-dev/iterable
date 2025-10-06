@@ -13,6 +13,7 @@ return (new Config())
     ]))
     ->setRules([
         '@PSR12' => true,
+        '@PHP8x2Migration:risky' => true,
     ])
     ->setRiskyAllowed(true)
     ->setUsingCache(true);
