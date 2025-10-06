@@ -94,4 +94,22 @@ class Iterables
             yield $key;
         }
     }
+
+    /**
+     * @template TKey of array-key
+     * @template TValue
+     *
+     * @param iterable<TKey, TValue> $iterable
+     * @param (callable(TValue, TKey): bool) $callback
+     *
+     * @return \Generator<TKey, TValue>
+     */
+    public static function filter(iterable $iterable, callable $callback): \Generator
+    {
+        foreach ($iterable as $key => $value) {
+            if ($callback($value, $key) === true) {
+                yield $key => $value;
+            }
+        }
+    }
 }
