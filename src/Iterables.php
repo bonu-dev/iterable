@@ -100,7 +100,7 @@ class Iterables
      * @template TValue
      *
      * @param iterable<TKey, TValue> $iterable
-     * @param (callable(TValue, TKey): bool) $callback
+     * @param (callable(TValue, TKey): bool) $callback Callback must return the boolean true to include an item. Truthy non-bool values (e.g. 1, "yes") are excluded.
      *
      * @return \Generator<TKey, TValue>
      */
