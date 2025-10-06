@@ -8,9 +8,7 @@ use Bonu\Iterable\Iterables;
 
 final class MapWithKeysTest extends TestCase
 {
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function itMapsIterableWithKeysViaGivenCallable(): void
     {
         $mapped = Iterables::mapWithKeys(
@@ -23,9 +21,7 @@ final class MapWithKeysTest extends TestCase
         $this->assertSame(['FOO' => 'foo', 'BAR' => 'bar'], \iterator_to_array($mapped));
     }
 
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function itMapsEmptyIterable(): void
     {
         $mapped = Iterables::mapWithKeys(
@@ -36,9 +32,7 @@ final class MapWithKeysTest extends TestCase
         $this->assertSame([], \iterator_to_array($mapped));
     }
 
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function itMapsSingleElementIterable(): void
     {
         $mapped = Iterables::mapWithKeys(
@@ -49,9 +43,7 @@ final class MapWithKeysTest extends TestCase
         $this->assertSame(['single' => 'SINGLE'], \iterator_to_array($mapped));
     }
 
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function itMapsWithMultipleKeysPerElement(): void
     {
         $mapped = Iterables::mapWithKeys(
@@ -66,9 +58,7 @@ final class MapWithKeysTest extends TestCase
         $this->assertSame(['test' => 'original', 'TEST' => 'uppercase', 4 => 'length'], \iterator_to_array($mapped));
     }
 
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function itMapsWithNullValues(): void
     {
         $mapped = Iterables::mapWithKeys(
@@ -81,9 +71,7 @@ final class MapWithKeysTest extends TestCase
         $this->assertSame(['null_key' => 'null_value', 'value' => 'value'], \iterator_to_array($mapped));
     }
 
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function itMapsWithMixedTypes(): void
     {
         $mapped = Iterables::mapWithKeys(
@@ -96,9 +84,7 @@ final class MapWithKeysTest extends TestCase
         $this->assertSame(['string' => 'string', 'integer' => 123, 'boolean' => true], \iterator_to_array($mapped));
     }
 
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function itMapsWithOriginalKeys(): void
     {
         $mapped = Iterables::mapWithKeys(
@@ -121,9 +107,7 @@ final class MapWithKeysTest extends TestCase
         $this->assertSame($expected, \iterator_to_array($mapped));
     }
 
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function itMapsWithNumericKeys(): void
     {
         $mapped = Iterables::mapWithKeys(
@@ -136,9 +120,7 @@ final class MapWithKeysTest extends TestCase
         $this->assertSame([20 => 'ten_doubled', 40 => 'twenty_doubled'], \iterator_to_array($mapped));
     }
 
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function itMapsGenerator(): void
     {
         $generator = function (): \Generator {
@@ -156,9 +138,7 @@ final class MapWithKeysTest extends TestCase
         $this->assertSame(['first_mapped' => 100, 'second_mapped' => 200], \iterator_to_array($mapped));
     }
 
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function itMapsArrayObject(): void
     {
         $arrayObject = new \ArrayObject(['x' => 5, 'y' => 10]);
@@ -173,9 +153,7 @@ final class MapWithKeysTest extends TestCase
         $this->assertSame(['x_squared' => 25, 'y_squared' => 100], \iterator_to_array($mapped));
     }
 
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function itMapsWithEmptyArrayReturned(): void
     {
         $mapped = Iterables::mapWithKeys(
@@ -186,9 +164,7 @@ final class MapWithKeysTest extends TestCase
         $this->assertSame([], \iterator_to_array($mapped));
     }
 
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function itMapsWithOverlappingKeys(): void
     {
         $mapped = Iterables::mapWithKeys(

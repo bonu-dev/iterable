@@ -8,9 +8,7 @@ use Bonu\Iterable\Iterables;
 
 final class FirstTest extends TestCase
 {
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function itReturnsFirstValueInIterable(): void
     {
         $this->assertSame(
@@ -19,17 +17,13 @@ final class FirstTest extends TestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function itReturnsNullIfIterableIsEmptyWhileGettingFirstValue(): void
     {
         $this->assertNull(Iterables::first([]));
     }
 
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function itReturnsFirstValueFromSingleElementIterable(): void
     {
         $this->assertSame('single', Iterables::first(['single']));
@@ -37,18 +31,14 @@ final class FirstTest extends TestCase
         $this->assertTrue(Iterables::first([true]));
     }
 
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function itReturnsNullAsFirstValue(): void
     {
         $this->assertNull(Iterables::first([null]));
         $this->assertNull(Iterables::first([null, 'second']));
     }
 
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function itReturnsFalsyValuesAsFirst(): void
     {
         $this->assertSame(0, Iterables::first([0, 1]));
@@ -57,27 +47,21 @@ final class FirstTest extends TestCase
         $this->assertSame(0.0, Iterables::first([0.0, 1.0]));
     }
 
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function itReturnsFirstValueWithStringKeys(): void
     {
         $this->assertSame('value1', Iterables::first(['key1' => 'value1', 'key2' => 'value2']));
         $this->assertSame('empty key value', Iterables::first(['' => 'empty key value', 'key' => 'other']));
     }
 
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function itReturnsFirstValueWithNumericKeys(): void
     {
         $this->assertSame('hundred', Iterables::first([100 => 'hundred', 200 => 'two hundred']));
         $this->assertSame('negative', Iterables::first([-1 => 'negative', 0 => 'zero']));
     }
 
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function itReturnsFirstValueFromGenerator(): void
     {
         $generator = function (): \Generator {
@@ -89,9 +73,7 @@ final class FirstTest extends TestCase
         $this->assertSame(1, Iterables::first($generator()));
     }
 
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function itReturnsNullFromEmptyGenerator(): void
     {
         $emptyGenerator = function (): \Generator {
@@ -102,9 +84,7 @@ final class FirstTest extends TestCase
         $this->assertNull(Iterables::first($emptyGenerator()));
     }
 
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function itReturnsFirstValueFromArrayObject(): void
     {
         $arrayObject = new \ArrayObject(['x' => 10, 'y' => 20, 'z' => 30]);
@@ -114,9 +94,7 @@ final class FirstTest extends TestCase
         $this->assertNull(Iterables::first($emptyArrayObject));
     }
 
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function itReturnsFirstValueFromArrayIterator(): void
     {
         $iterator = new \ArrayIterator(['a', 'b', 'c']);
@@ -126,9 +104,7 @@ final class FirstTest extends TestCase
         $this->assertNull(Iterables::first($emptyIterator));
     }
 
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function itReturnsFirstValueWithMixedTypes(): void
     {
         $this->assertSame('string', Iterables::first(['string', 123, true, [], null]));
@@ -136,9 +112,7 @@ final class FirstTest extends TestCase
         $this->assertTrue(Iterables::first([true, 'after boolean']));
     }
 
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function itReturnsFirstValueRegardlessOfKeyOrder(): void
     {
         // Arrays maintain insertion order

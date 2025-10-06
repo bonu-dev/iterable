@@ -5,12 +5,11 @@ declare(strict_types=1);
 namespace Bonu\Iterable\Tests;
 
 use Bonu\Iterable\Iterables;
+use PHPUnit\Framework\Attributes\Test;
 
 final class FilterTest extends TestCase
 {
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function itFiltersIterableWithCallback(): void
     {
         $filtered = Iterables::filter(
@@ -21,9 +20,7 @@ final class FilterTest extends TestCase
         $this->assertSame([1 => 2, 3 => 4], \iterator_to_array($filtered));
     }
 
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function itFiltersEmptyIterable(): void
     {
         $filtered = Iterables::filter(
@@ -34,9 +31,7 @@ final class FilterTest extends TestCase
         $this->assertSame([], \iterator_to_array($filtered));
     }
 
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function itFiltersWithNoMatches(): void
     {
         $filtered = Iterables::filter(
@@ -47,9 +42,7 @@ final class FilterTest extends TestCase
         $this->assertSame([], \iterator_to_array($filtered));
     }
 
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function itFiltersWithAllMatches(): void
     {
         $filtered = Iterables::filter(
@@ -60,9 +53,7 @@ final class FilterTest extends TestCase
         $this->assertSame(['a', 'b', 'c'], \iterator_to_array($filtered));
     }
 
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function itFiltersWithNullValues(): void
     {
         $filtered = Iterables::filter(
@@ -73,9 +64,7 @@ final class FilterTest extends TestCase
         $this->assertSame([1 => 'value', 3 => 42], \iterator_to_array($filtered));
     }
 
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function itFiltersWithMixedTypes(): void
     {
         $filtered = Iterables::filter(
@@ -86,9 +75,7 @@ final class FilterTest extends TestCase
         $this->assertSame(['string', 123, true, ['not empty']], \array_values(\iterator_to_array($filtered)));
     }
 
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function itFiltersWithKeyBasedCallback(): void
     {
         $filtered = Iterables::filter(
@@ -99,9 +86,7 @@ final class FilterTest extends TestCase
         $this->assertSame(['a' => 1, 'c' => 3], \iterator_to_array($filtered));
     }
 
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function itFiltersWithStrictBooleanCheck(): void
     {
         $filtered = Iterables::filter(
@@ -112,9 +97,7 @@ final class FilterTest extends TestCase
         $this->assertSame([6 => true], \iterator_to_array($filtered));
     }
 
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function itFiltersWithCallbackReturningNonBoolean(): void
     {
         $filtered = Iterables::filter(
@@ -125,9 +108,7 @@ final class FilterTest extends TestCase
         $this->assertSame([], \iterator_to_array($filtered)); // Should be empty as callback never returns exactly true
     }
 
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function itFiltersWithCallbackReturningTruthyButNotTrue(): void
     {
         $filtered = Iterables::filter(
@@ -138,9 +119,7 @@ final class FilterTest extends TestCase
         $this->assertSame([], \iterator_to_array($filtered)); // Should be empty as callback never returns exactly true
     }
 
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function itFiltersStringKeys(): void
     {
         $filtered = Iterables::filter(
@@ -151,9 +130,7 @@ final class FilterTest extends TestCase
         $this->assertSame(['key2' => 'value2'], \iterator_to_array($filtered));
     }
 
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function itFiltersGenerator(): void
     {
         $generator = function (): \Generator {
@@ -170,9 +147,7 @@ final class FilterTest extends TestCase
         $this->assertSame(['second' => 2, 'third' => 3], \iterator_to_array($filtered));
     }
 
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function itFiltersArrayObject(): void
     {
         $arrayObject = new \ArrayObject(['x' => 10, 'y' => 20, 'z' => 30]);

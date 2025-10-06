@@ -8,9 +8,7 @@ use Bonu\Iterable\Iterables;
 
 final class KeysTest extends TestCase
 {
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function itReturnsKeys(): void
     {
         $keys = Iterables::keys([
@@ -21,18 +19,14 @@ final class KeysTest extends TestCase
         $this->assertSame(['foo', 'bar'], \iterator_to_array($keys));
     }
 
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function itReturnsEmptyArrayForEmptyIterable(): void
     {
         $keys = Iterables::keys([]);
         $this->assertSame([], \iterator_to_array($keys));
     }
 
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function itReturnsSingleKey(): void
     {
         $keys = Iterables::keys(['single' => 'value']);
@@ -42,9 +36,7 @@ final class KeysTest extends TestCase
         $this->assertSame([42], \iterator_to_array($keys));
     }
 
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function itReturnsNumericKeys(): void
     {
         $keys = Iterables::keys([0 => 'zero', 1 => 'one', 2 => 'two']);
@@ -54,54 +46,42 @@ final class KeysTest extends TestCase
         $this->assertSame([100, 200], \iterator_to_array($keys));
     }
 
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function itReturnsNegativeNumericKeys(): void
     {
         $keys = Iterables::keys([-1 => 'negative one', -5 => 'negative five']);
         $this->assertSame([-1, -5], \iterator_to_array($keys));
     }
 
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function itReturnsStringKeys(): void
     {
         $keys = Iterables::keys(['a' => 1, 'b' => 2, 'c' => 3]);
         $this->assertSame(['a', 'b', 'c'], \iterator_to_array($keys));
     }
 
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function itReturnsEmptyStringKey(): void
     {
         $keys = Iterables::keys(['' => 'empty key', 'normal' => 'normal key']);
         $this->assertSame(['', 'normal'], \iterator_to_array($keys));
     }
 
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function itReturnsMixedKeyTypes(): void
     {
         $keys = Iterables::keys([0 => 'zero', 'string' => 'value', 42 => 'forty-two', 'another' => 'text']);
         $this->assertSame([0, 'string', 42, 'another'], \iterator_to_array($keys));
     }
 
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function itReturnsKeysWithNullValues(): void
     {
         $keys = Iterables::keys(['key1' => null, 'key2' => 'value', 'key3' => null]);
         $this->assertSame(['key1', 'key2', 'key3'], \iterator_to_array($keys));
     }
 
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function itReturnsKeysWithFalsyValues(): void
     {
         $keys = Iterables::keys([
@@ -115,9 +95,7 @@ final class KeysTest extends TestCase
         $this->assertSame(['zero', 'false', 'empty', 'null', 'float_zero'], \iterator_to_array($keys));
     }
 
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function itReturnsKeysFromGenerator(): void
     {
         $generator = function (): \Generator {
@@ -130,9 +108,7 @@ final class KeysTest extends TestCase
         $this->assertSame(['first', 'second', 'third'], \iterator_to_array($keys));
     }
 
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function itReturnsEmptyForEmptyGenerator(): void
     {
         $emptyGenerator = function (): \Generator {
@@ -144,9 +120,7 @@ final class KeysTest extends TestCase
         $this->assertSame([], \iterator_to_array($keys));
     }
 
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function itReturnsKeysFromArrayObject(): void
     {
         $arrayObject = new \ArrayObject(['x' => 10, 'y' => 20, 'z' => 30]);
@@ -154,9 +128,7 @@ final class KeysTest extends TestCase
         $this->assertSame(['x', 'y', 'z'], \iterator_to_array($keys));
     }
 
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function itReturnsEmptyForEmptyArrayObject(): void
     {
         $emptyArrayObject = new \ArrayObject([]);
@@ -164,9 +136,7 @@ final class KeysTest extends TestCase
         $this->assertSame([], \iterator_to_array($keys));
     }
 
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function itReturnsKeysFromArrayIterator(): void
     {
         $iterator = new \ArrayIterator(['a' => 'alpha', 'b' => 'beta']);
@@ -174,9 +144,7 @@ final class KeysTest extends TestCase
         $this->assertSame(['a', 'b'], \iterator_to_array($keys));
     }
 
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function itPreservesKeyOrder(): void
     {
         // Keys should be returned in iteration order
@@ -187,9 +155,7 @@ final class KeysTest extends TestCase
         $this->assertSame(['z', 'a', 'm'], \iterator_to_array($keys));
     }
 
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function itReturnsKeysWithComplexValues(): void
     {
         $keys = Iterables::keys([

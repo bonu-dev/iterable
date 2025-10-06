@@ -8,36 +8,28 @@ use Bonu\Iterable\Iterables;
 
 final class IsEmptyTest extends TestCase
 {
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function itReturnsIfIterableIsEmpty(): void
     {
         $this->assertTrue(Iterables::isEmpty([]));
         $this->assertFalse(Iterables::isEmpty(['foo']));
     }
 
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function itReturnsTrueForEmptyArrayWithMixedKeys(): void
     {
         $this->assertTrue(Iterables::isEmpty([]));
         $this->assertTrue(Iterables::isEmpty([]));
     }
 
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function itReturnsFalseForArrayWithNullValue(): void
     {
         $this->assertFalse(Iterables::isEmpty([null]));
         $this->assertFalse(Iterables::isEmpty([0 => null]));
     }
 
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function itReturnsFalseForArrayWithFalsyValues(): void
     {
         $this->assertFalse(Iterables::isEmpty([0]));
@@ -46,27 +38,21 @@ final class IsEmptyTest extends TestCase
         $this->assertFalse(Iterables::isEmpty([0.0]));
     }
 
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function itReturnsFalseForArrayWithStringKeys(): void
     {
         $this->assertFalse(Iterables::isEmpty(['key' => 'value']));
         $this->assertFalse(Iterables::isEmpty(['' => 'empty key']));
     }
 
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function itReturnsFalseForArrayWithNumericKeys(): void
     {
         $this->assertFalse(Iterables::isEmpty([100 => 'value']));
         $this->assertFalse(Iterables::isEmpty([-1 => 'negative key']));
     }
 
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function itHandlesEmptyGenerator(): void
     {
         $emptyGenerator = function (): \Generator {
@@ -77,9 +63,7 @@ final class IsEmptyTest extends TestCase
         $this->assertTrue(Iterables::isEmpty($emptyGenerator()));
     }
 
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function itHandlesNonEmptyGenerator(): void
     {
         $generator = function (): \Generator {
@@ -89,27 +73,21 @@ final class IsEmptyTest extends TestCase
         $this->assertFalse(Iterables::isEmpty($generator()));
     }
 
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function itHandlesEmptyArrayObject(): void
     {
         $emptyArrayObject = new \ArrayObject([]);
         $this->assertTrue(Iterables::isEmpty($emptyArrayObject));
     }
 
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function itHandlesNonEmptyArrayObject(): void
     {
         $arrayObject = new \ArrayObject(['value']);
         $this->assertFalse(Iterables::isEmpty($arrayObject));
     }
 
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function itHandlesArrayIterator(): void
     {
         $emptyIterator = new \ArrayIterator([]);
@@ -119,9 +97,7 @@ final class IsEmptyTest extends TestCase
         $this->assertFalse(Iterables::isEmpty($nonEmptyIterator));
     }
 
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function itHandlesSingleElementIterables(): void
     {
         $this->assertFalse(Iterables::isEmpty([1]));

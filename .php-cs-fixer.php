@@ -14,6 +14,8 @@ return (new Config())
     ->setRules([
         '@PSR12' => true,
         '@PHP8x2Migration:risky' => true,
+        'php_unit_attributes' => true,
+        'no_empty_phpdoc' => true,
     ])
     ->setRiskyAllowed(true)
     ->setUsingCache(true);
