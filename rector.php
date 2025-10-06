@@ -9,5 +9,6 @@ return RectorConfig::configure()
         __DIR__ . '/src',
         __DIR__ . '/tests',
     ])
+    ->withPhpSets(php82: true)
     ->withCodeQualityLevel(10)
     ->withDeadCodeLevel(10);
