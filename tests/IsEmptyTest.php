@@ -19,7 +19,6 @@ final class IsEmptyTest extends TestCase
     public function itReturnsTrueForEmptyArrayWithMixedKeys(): void
     {
         $this->assertTrue(Iterables::isEmpty([]));
-        $this->assertTrue(Iterables::isEmpty([]));
     }
 
     #[\PHPUnit\Framework\Attributes\Test]
