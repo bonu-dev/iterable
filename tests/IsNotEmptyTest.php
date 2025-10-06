@@ -23,7 +23,7 @@ final class IsNotEmptyTest extends TestCase
     public function itReturnsFalseForEmptyArrayWithMixedKeys(): void
     {
         $this->assertFalse(Iterables::isNotEmpty([]));
-        $this->assertFalse(Iterables::isNotEmpty(array()));
+        $this->assertFalse(Iterables::isNotEmpty([]));
     }
 
     /**
