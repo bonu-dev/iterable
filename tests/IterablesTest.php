@@ -85,4 +85,18 @@ final class IterablesTest extends TestCase
 
         $this->assertSame(['foo', 'bar'], \iterator_to_array($keys));
     }
+
+    /**
+     * @test
+     */
+    public function itReducesIterable(): void
+    {
+        $reduced = Iterables::reduce(
+            [1, 2, 3],
+            static fn (int $carry, int $value): int => $carry + $value,
+            0,
+        );
+
+        $this->assertSame(6, $reduced);
+    }
 }

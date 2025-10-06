@@ -94,4 +94,30 @@ class Iterables
             yield $key;
         }
     }
+
+    /**
+     * @template TKey of array-key
+     * @template TValue
+     * @template TReduce
+     * @template TReduceInitial
+     *
+     * @param iterable<TKey, TValue> $iterable
+     * @param (callable(TReduce|TReduceInitial, TValue, TKey): TReduce) $callback
+     * @param TReduceInitial $initial
+     *
+     * @return TReduceInitial|TReduce
+     */
+    public static function reduce(
+        iterable $iterable,
+        callable $callback,
+        mixed $initial = null,
+    ): mixed {
+        $result = $initial;
+
+        foreach ($iterable as $key => $value) {
+            $result = $callback($result, $value, $key);
+        }
+
+        return $result;
+    }
 }
