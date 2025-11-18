@@ -44,6 +44,9 @@ Iterables::isNotEmpty(['foo', 'bar']);
 
 // ['foo', 'bar']
 Iterables::keys(['foo' => 'bar', 'bar' => 'baz']);
+
+// [[1, 2], [3]]
+Iterables::chunk([1, 2, 3], 2);
 ```
 
 ## License
