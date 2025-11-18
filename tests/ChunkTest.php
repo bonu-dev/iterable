@@ -17,6 +17,14 @@ final class ChunkTest extends TestCase
     }
 
     #[\PHPUnit\Framework\Attributes\Test]
+    public function itThrowsInvalidArgumentExceptionIfSizeIsZero(): void
+    {
+        $this->expectException(\InvalidArgumentException::class);
+
+        \iterator_to_array(Iterables::chunk([], 0));
+    }
+
+    #[\PHPUnit\Framework\Attributes\Test]
     public function itSplitsIterableIntoMultipleChunks(): void
     {
         $chunks = \iterator_to_array(Iterables::chunk([

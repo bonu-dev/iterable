@@ -117,7 +117,7 @@ class Iterables
      * @template TValue
      *
      * @param iterable<array-key, TValue> $iterable
-     * @param int<0, max> $size
+     * @param int<1, max> $size
      *
      * @return \Generator<array-key, list<TValue>>
      *
@@ -126,7 +126,7 @@ class Iterables
     public static function chunk(iterable $iterable, int $size): \Generator
     {
         // Sanity check
-        if ($size < 0) {
+        if ($size < 1) {
             throw new \InvalidArgumentException('Size must be greater than 0.');
         }
 
