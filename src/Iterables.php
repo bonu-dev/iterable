@@ -131,17 +131,13 @@ class Iterables
         }
 
         $currentChunk = [];
-        $chunkIndex = 0;
 
         foreach ($iterable as $item) {
             $currentChunk[] = $item;
 
-            $chunkIndex++;
-
-            if ($chunkIndex >= $size) {
+            if (count($currentChunk) >= $size) {
                 yield $currentChunk;
                 $currentChunk = [];
-                $chunkIndex = 0;
             }
         }
 
