@@ -9,6 +9,14 @@ use Bonu\Iterable\Iterables;
 final class ChunkTest extends TestCase
 {
     #[\PHPUnit\Framework\Attributes\Test]
+    public function itThrowsInvalidArgumentExceptionIfSizeIsNegative(): void
+    {
+        $this->expectException(\InvalidArgumentException::class);
+
+        \iterator_to_array(Iterables::chunk([], -1));
+    }
+
+    #[\PHPUnit\Framework\Attributes\Test]
     public function itSplitsIterableIntoMultipleChunks(): void
     {
         $chunks = \iterator_to_array(Iterables::chunk([

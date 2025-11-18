@@ -1,0 +1,7 @@
+parameters:
+	ignoreErrors:
+		-
+			message: '#^Comparison operation "\<" between int\<0, max\> and 0 is always false\.$#'
+			identifier: smaller.alwaysFalse
+			count: 1
+			path: src/Iterables.php
