@@ -112,4 +112,34 @@ class Iterables
             }
         }
     }
+
+    /**
+     * @template TValue
+     *
+     * @param iterable<array-key, TValue> $iterable
+     * @param int<0, max> $size
+     *
+     * @return \Generator<array-key, list<TValue>>
+     */
+    public static function chunk(iterable $iterable, int $size): \Generator
+    {
+        $currentChunk = [];
+        $chunkIndex = 0;
+
+        foreach ($iterable as $item) {
+            $currentChunk[] = $item;
+
+            $chunkIndex++;
+
+            if ($chunkIndex >= $size) {
+                yield $currentChunk;
+                $currentChunk = [];
+                $chunkIndex = 0;
+            }
+        }
+
+        if ($currentChunk !== []) {
+            yield $currentChunk;
+        }
+    }
 }
