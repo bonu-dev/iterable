@@ -1,6 +1,9 @@
 # PHP Iterable
 
-[![PHPUnit](https://github.com/bonu-dev/iterable/actions/workflows/phpunit.yaml/badge.svg)](https://github.com/bonu-dev/iterable/actions/workflows/phpunit.yaml)
+[![PHPUnit](https://github.com/bonu-dev/iterable/actions/workflows/phpunit.yaml/badge.svg?branch=main)](https://github.com/bonu-dev/iterable/actions/workflows/phpunit.yaml)
+[![Latest Stable Version](https://poser.pugx.org/bonu/iterable/v)](https://packagist.org/packages/bonu/iterable)
+[![License](https://poser.pugx.org/bonu/iterable/license)](https://packagist.org/packages/bonu/iterable)
+[![PHP Version](https://img.shields.io/packagist/php-v/bonu/iterable.svg)](https://packagist.org/packages/bonu/iterable)
 
 Handy utility methods that simplify iterable operations.
 
