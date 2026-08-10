@@ -31,6 +31,10 @@
     "scripts": {
         "code:analyse": [
             "./vendor/bin/phpstan analyse --memory-limit=-1"
+        ],
+        "code:fix": [
+            "./vendor/bin/rector process --clear-cache",
+            "./vendor/bin/php-cs-fixer fix --using-cache no"
         ]
     }
 }

@@ -5,10 +5,16 @@ declare(strict_types=1);
 namespace Bonu\Iterable\Tests;
 
 use Bonu\Iterable\Iterables;
+use PHPUnit\Framework\Attributes\Test;
 
+use const PHP_FLOAT_EPSILON;
+
+/**
+ * @internal
+ */
 final class FirstTest extends TestCase
 {
-    #[\PHPUnit\Framework\Attributes\Test]
+    #[Test]
     public function itReturnsFirstValueInIterable(): void
     {
         $this->assertSame(
@@ -17,13 +23,13 @@ final class FirstTest extends TestCase
         );
     }
 
-    #[\PHPUnit\Framework\Attributes\Test]
+    #[Test]
     public function itReturnsNullIfIterableIsEmptyWhileGettingFirstValue(): void
     {
         $this->assertNull(Iterables::first([]));
     }
 
-    #[\PHPUnit\Framework\Attributes\Test]
+    #[Test]
     public function itReturnsFirstValueFromSingleElementIterable(): void
     {
         $this->assertSame('single', Iterables::first(['single']));
@@ -31,37 +37,37 @@ final class FirstTest extends TestCase
         $this->assertTrue(Iterables::first([true]));
     }
 
-    #[\PHPUnit\Framework\Attributes\Test]
+    #[Test]
     public function itReturnsNullAsFirstValue(): void
     {
         $this->assertNull(Iterables::first([null]));
         $this->assertNull(Iterables::first([null, 'second']));
     }
 
-    #[\PHPUnit\Framework\Attributes\Test]
+    #[Test]
     public function itReturnsFalsyValuesAsFirst(): void
     {
         $this->assertSame(0, Iterables::first([0, 1]));
         $this->assertFalse(Iterables::first([false, true]));
         $this->assertSame('', Iterables::first(['', 'not empty']));
-        $this->assertSame(0.0, Iterables::first([0.0, 1.0]));
+        $this->assertEqualsWithDelta(0.0, Iterables::first([0.0, 1.0]), PHP_FLOAT_EPSILON);
     }
 
-    #[\PHPUnit\Framework\Attributes\Test]
+    #[Test]
     public function itReturnsFirstValueWithStringKeys(): void
     {
         $this->assertSame('value1', Iterables::first(['key1' => 'value1', 'key2' => 'value2']));
         $this->assertSame('empty key value', Iterables::first(['' => 'empty key value', 'key' => 'other']));
     }
 
-    #[\PHPUnit\Framework\Attributes\Test]
+    #[Test]
     public function itReturnsFirstValueWithNumericKeys(): void
     {
         $this->assertSame('hundred', Iterables::first([100 => 'hundred', 200 => 'two hundred']));
         $this->assertSame('negative', Iterables::first([-1 => 'negative', 0 => 'zero']));
     }
 
-    #[\PHPUnit\Framework\Attributes\Test]
+    #[Test]
     public function itReturnsFirstValueFromGenerator(): void
     {
         $generator = function (): \Generator {
@@ -73,18 +79,16 @@ final class FirstTest extends TestCase
         $this->assertSame(1, Iterables::first($generator()));
     }
 
-    #[\PHPUnit\Framework\Attributes\Test]
+    #[Test]
     public function itReturnsNullFromEmptyGenerator(): void
     {
         $emptyGenerator = function (): \Generator {
-            return;
-            yield; // Never reached
         };
 
         $this->assertNull(Iterables::first($emptyGenerator()));
     }
 
-    #[\PHPUnit\Framework\Attributes\Test]
+    #[Test]
     public function itReturnsFirstValueFromArrayObject(): void
     {
         $arrayObject = new \ArrayObject(['x' => 10, 'y' => 20, 'z' => 30]);
@@ -94,7 +98,7 @@ final class FirstTest extends TestCase
         $this->assertNull(Iterables::first($emptyArrayObject));
     }
 
-    #[\PHPUnit\Framework\Attributes\Test]
+    #[Test]
     public function itReturnsFirstValueFromArrayIterator(): void
     {
         $iterator = new \ArrayIterator(['a', 'b', 'c']);
@@ -104,7 +108,7 @@ final class FirstTest extends TestCase
         $this->assertNull(Iterables::first($emptyIterator));
     }
 
-    #[\PHPUnit\Framework\Attributes\Test]
+    #[Test]
     public function itReturnsFirstValueWithMixedTypes(): void
     {
         $this->assertSame('string', Iterables::first(['string', 123, true, [], null]));
@@ -112,7 +116,7 @@ final class FirstTest extends TestCase
         $this->assertTrue(Iterables::first([true, 'after boolean']));
     }
 
-    #[\PHPUnit\Framework\Attributes\Test]
+    #[Test]
     public function itReturnsFirstValueRegardlessOfKeyOrder(): void
     {
         // Arrays maintain insertion order

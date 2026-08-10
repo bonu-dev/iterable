@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Bonu\Iterable;
 
+use function count;
+
 class Iterables
 {
     /**
@@ -12,7 +14,7 @@ class Iterables
      * @template TMappedValue of mixed
      *
      * @param iterable<TKey, TInitialValue> $iterable
-     * @param callable(TInitialValue, TKey): TMappedValue  $callback
+     * @param callable(TInitialValue, TKey): TMappedValue $callback
      *
      * @return \Generator<TKey, TMappedValue>
      */
@@ -30,7 +32,7 @@ class Iterables
      * @template TMappedValue of mixed
      *
      * @param iterable<TKey, TInitialValue> $iterable
-     * @param callable(TInitialValue, TKey): array<TMappedKey, TMappedValue>  $callback
+     * @param callable(TInitialValue, TKey): array<TMappedKey, TMappedValue> $callback
      *
      * @return \Generator<TMappedKey, TMappedValue>
      */
@@ -46,7 +48,7 @@ class Iterables
      *
      * @param iterable<array-key, TValue> $iterable
      *
-     * @return TValue|null
+     * @return null|TValue
      */
     public static function first(iterable $iterable): mixed
     {
