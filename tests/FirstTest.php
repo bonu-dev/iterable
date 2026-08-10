@@ -83,6 +83,7 @@ final class FirstTest extends TestCase
     public function itReturnsNullFromEmptyGenerator(): void
     {
         $emptyGenerator = function (): \Generator {
+            yield from [];
         };
 
         $this->assertNull(Iterables::first($emptyGenerator()));

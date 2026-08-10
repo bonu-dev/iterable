@@ -59,6 +59,7 @@ final class IsNotEmptyTest extends TestCase
     public function itHandlesEmptyGenerator(): void
     {
         $emptyGenerator = function (): \Generator {
+            yield from [];
         };
 
         $this->assertFalse(Iterables::isNotEmpty($emptyGenerator()));

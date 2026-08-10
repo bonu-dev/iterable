@@ -118,6 +118,7 @@ final class KeysTest extends TestCase
     public function itReturnsEmptyForEmptyGenerator(): void
     {
         $emptyGenerator = function (): \Generator {
+            yield from [];
         };
 
         $keys = Iterables::keys($emptyGenerator());
